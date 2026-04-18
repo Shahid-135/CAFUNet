@@ -45,7 +45,6 @@ CAFuNet processes multimodal inputs (text + image) through parallel encoder stre
 
 | Stage | Component | Description |
 |:------|:----------|:------------|
-| **Encoding** | CLIP ViT-B/32 | Extracts global and patch/token-level embeddings for both modalities |
 | **Topic Conditioning** | Topic-Guided Prompting (TGP) | Prepends BERTopic-induced topic embeddings to both encoder inputs; a Topic Alignment Projector (TAP) maps text-derived topics into the visual space |
 | **Calibration** | Context-Gated Calibration (CGC) | Fuzzy membership functions (Gaussian, Sigmoid, Trapezoidal) produce gating scores that multiplicatively recalibrate features based on contextual alignment |
 | **Enrichment** | Hybrid Feature Enrichment | Gated blending of domain-aware features with frozen CLIP priors for improved generalization |
@@ -213,7 +212,6 @@ All training configuration is managed through `config.yaml`. Key hyperparameters
 | `num_epochs` | 100 | Maximum training epochs (early stopping applied) |
 | `train_batch_size` | 32 | Training batch size |
 | `embedding_dim` | 512 | Shared embedding dimensionality |
-| `num_selected_topics` | 40 | Number of topic embeddings (N_t) |
 | `cl_loss_temperature` | 1.0 | Contrastive loss temperature (tau) |
 | `max_len_text` | 128 | Maximum text token length |
 | `use_lr_scheduler` | 1 | Enable StepLR scheduler |
