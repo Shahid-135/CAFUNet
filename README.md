@@ -29,7 +29,7 @@
 
 Multimodal social media data during crisis events presents significant challenges for classification due to noisy visual content, short or ambiguous text, and weak alignment between modalities. We propose **CAFuNet** (Context-Aligned Fusion Network), a multimodal classification architecture designed for humanitarian event analysis. CAFuNet introduces three components:
 
-1. **Dual Topic-Conditioning Mechanism (TGP)** — injects corpus-induced topic representations into both visual and textual encoders to provide shared semantic conditioning.
+1. **Dual Topic-Conditioning Mechanism (TGC)** — injects corpus-induced topic representations into both visual and textual encoders to provide shared semantic conditioning.
 2. **Context-Gated Calibration (CGC)** — modulates feature magnitudes based on their consistency with the shared context using parameterized fuzzy membership functions.
 3. **Projected Bilinear Block Fusion (PBBF)** — captures low-rank multiplicative interactions between modalities.
 
