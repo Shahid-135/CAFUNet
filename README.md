@@ -239,7 +239,6 @@ crisis_mmd_like_dataset_to_use: crisis_mmd_dataset
 # For TSEqD
 crisis_mmd_like_dataset_to_use: tseqd_dataset
 ```
-
 ## Evaluation
 
 To evaluate a trained checkpoint on the test set:
@@ -250,78 +249,7 @@ python test_run.py
 
 This loads the best checkpoint (saved during training based on test accuracy), runs a single test epoch, and writes metrics to `test_run_logs/`.
 
-## Results
 
-### Comparison with State-of-the-Art
-
-| Category | Method | CrisisMMD ||| TSEqD |||
-|:---------|:-------|:---:|:---:|:---:|:---:|:---:|:---:|
-| | | **Acc** | **m-F1** | **WF1** | **Acc** | **m-F1** | **WF1** |
-| Unimodal | BERT | 81.25 | 80.22 | 82.42 | 72.97 | 71.18 | 73.81 |
-| | ResNet | 81.33 | 81.04 | 81.63 | 72.32 | 70.94 | 73.14 |
-| | ViT | 81.30 | 79.77 | 81.37 | 73.42 | 71.24 | 73.16 |
-| Multimodal | VisualBERT | 84.05 | 81.89 | 82.88 | 72.80 | 72.46 | 74.55 |
-| | DMCC | 86.00 | 84.93 | 86.72 | 78.96 | 74.90 | 77.45 |
-| | CLMC | 86.53 | 85.18 | 86.46 | 78.73 | 74.86 | 77.70 |
-| | MIDLC | 87.42 | 85.34 | 86.28 | 77.36 | 74.79 | 77.14 |
-| | MMA | 87.63 | 85.21 | 87.00 | 78.31 | 75.10 | 77.92 |
-| **Proposed** | **CAFuNet** | **90.38** | **89.69** | **90.32** | **81.17** | **77.66** | **80.57** |
-
-CAFuNet achieves **+3.27 macro-F1** over the best baseline (MMA) on CrisisMMD and **+2.61 macro-F1** on TSEqD.
-
-### Comparison with Vision-Language Models
-
-| Method | Setting | CrisisMMD m-F1 | TSEqD m-F1 |
-|:-------|:--------|:--------------:|:----------:|
-| Gemini 2.0 Flash | Zero-shot | 59.99 | 48.17 |
-| Gemini 2.0 Flash | Fine-tuned | 64.25 | 70.27 |
-| Llama-3.2-Vision-11B | Zero-shot | 43.42 | 37.20 |
-| Llama-3.2-Vision-11B | Fine-tuned | 72.00 | 60.47 |
-| Pixtral-12B-2409 | Zero-shot | 42.26 | 38.63 |
-| Qwen2.5-VL-7B | Zero-shot | 55.16 | 43.23 |
-| **CAFuNet** | **Supervised** | **89.69** | **77.66** |
-
-CAFuNet surpasses Gemini 2.0 Flash by **+28.75 F1** on CrisisMMD in a zero-shot comparison, validating the need for specialized domain-aware architectures in crisis informatics.
-
-### Ablation Study (CrisisMMD)
-
-| Configuration | Acc | m-F1 | WF1 |
-|:--------------|:---:|:----:|:---:|
-| Baseline (Simple Fusion) | 84.15 | 78.08 | 84.12 |
-| + Topic-Guided Prompting (TGP) | 86.93 | 85.07 | 86.90 |
-| + TGP + Context-Gated Calibration (CGC) | 88.24 | 86.80 | 88.23 |
-| + TGP + CGC + Projected Bilinear Block Fusion (PBBF) | 89.51 | 88.65 | 89.46 |
-| **CAFuNet (Full)** | **90.38** | **89.69** | **90.32** |
-
-Each component contributes meaningful gains: TGP (+2.78 F1), CGC (+1.33 F1), PBBF (+1.23 F1), Contrastive Loss (+0.86 F1).
-
-### Fusion Strategy Comparison
-
-| Fusion Method | Accuracy | F1 |
-|:--------------|:--------:|:--:|
-| Early Fusion (Concatenation) | 86.91 | 86.88 |
-| Late Fusion (Logit Averaging) | 87.12 | 87.05 |
-| Cross-Attention Fusion | 88.93 | 88.89 |
-| **PBBF (Ours)** | **90.38** | **90.32** |
-
-### Leave-One-Event-Out Generalization (CrisisMMD)
-
-| Held-Out Event | Acc | m-F1 | WF1 |
-|:---------------|:---:|:----:|:---:|
-| Hurricane Maria | 90.34 | 88.59 | 90.40 |
-| Hurricane Irma | 89.46 | 89.17 | 89.46 |
-| California Wildfires | 82.56 | 81.47 | 81.83 |
-| Iraq-Iran Earthquake | 79.39 | 82.67 | 79.33 |
-| Mexico Earthquake | 80.38 | 75.66 | 80.21 |
-| Hurricane Harvey | 88.82 | 88.40 | 88.87 |
-| Sri Lanka Floods | 96.38 | 82.94 | 96.38 |
-
-### Robustness (Multi-Seed)
-
-| Method | F1 (mean +/- std) |
-|:-------|:------------------:|
-| MMA | 87.00 +/- 0.30 |
-| **CAFuNet** | **90.32 +/- 0.20** |
 
 ### Sensitivity to Topic Count (N_t)
 
