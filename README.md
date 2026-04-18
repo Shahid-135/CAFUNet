@@ -38,7 +38,7 @@ Experiments on **CrisisMMD** and **TSEqD** benchmarks show that CAFuNet consiste
 ## Architecture
 
 <p align="center">
-  <img src="./architecture.png" width="90%" />
+  <img src="./architecture.png" width="100%" />
 </p>
 
 CAFuNet processes multimodal inputs (text + image) through parallel encoder streams. The pipeline consists of:
