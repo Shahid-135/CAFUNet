@@ -45,7 +45,7 @@ CAFuNet processes multimodal inputs (text + image) through parallel encoder stre
 
 | Stage | Component | Description |
 |:------|:----------|:------------|
-| **Topic Conditioning** | Topic-Guided Prompting (TGP) | Prepends BERTopic-induced topic embeddings to both encoder inputs; a Topic Alignment Projector (TAP) maps text-derived topics into the visual space |
+| **Topic Conditioning** | Topic-Guided Conditioning (TGC) | Prepends BERTopic-induced topic embeddings to both encoder inputs; a Topic Alignment Projector (TAP) maps text-derived topics into the visual space |
 | **Calibration** | Context-Gated Calibration (CGC) | Fuzzy membership functions (Gaussian, Sigmoid, Trapezoidal) produce gating scores that multiplicatively recalibrate features based on contextual alignment |
 | **Enrichment** | Hybrid Feature Enrichment | Gated blending of domain-aware features with frozen CLIP priors for improved generalization |
 | **Fusion** | Projected Bilinear Block Fusion (PBBF) | B parallel low-rank bilinear interaction blocks capture disentangled cross-modal interactions |
